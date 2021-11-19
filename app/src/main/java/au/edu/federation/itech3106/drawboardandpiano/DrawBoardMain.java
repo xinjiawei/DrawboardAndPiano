@@ -21,8 +21,8 @@ import au.edu.federation.itech3106.drawboardandpiano.drawboard.DrawingBoard;
 
 public class DrawBoardMain extends AppCompatActivity implements View.OnClickListener{
 
-    private DrawingBoard mDrawingBoard;//画板
-    //代表颜色选项
+    private DrawingBoard mDrawingBoard;
+    //some colors, lol
     private ImageView Black;
     private ImageView Accent;
     private ImageView Primary;
@@ -39,7 +39,7 @@ public class DrawBoardMain extends AppCompatActivity implements View.OnClickList
     private ImageView color14;
     private ImageView color15;
     private ImageView color16;
-    //对画板的操作
+    //some operations to drawboard
     private ImageView mPaint;
     private ImageView mEraser;
     private ImageView mClean;
@@ -48,7 +48,7 @@ public class DrawBoardMain extends AppCompatActivity implements View.OnClickList
 
     private ImageView boardBackground;
     private TextView show;
-    //记录画笔大小
+    //records the datas that pens and ersers
     private float size;
     int lock = 0;
     int tmp = 0;
@@ -62,8 +62,8 @@ public class DrawBoardMain extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.drawboard);
 
         show = findViewById(R.id.textView);
-        initView();//绑定
-        initEvent();//匹配监听事件
+        initView();
+        initEvent();
         Intent i = getIntent();
         String message =i.getStringExtra(MainActivity.EXTRA_MESSAGE);
         show.setText(message);
@@ -77,11 +77,11 @@ public class DrawBoardMain extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onResume() {
         super.onResume();
-        //默认画笔大小
+        //default pen sizes
        size  = dip2x(1);
     }
 
-    private void initView(){//对象 找控件
+    private void initView(){
         mDrawingBoard = findViewById(R.id.draw_board);
         //mSlider = findViewById(R.id.slider);
         Black = findViewById(R.id.iv_one);
@@ -110,7 +110,7 @@ public class DrawBoardMain extends AppCompatActivity implements View.OnClickList
         boardBackground = findViewById(R.id.boardbackground);
     }
 
-    //获取像素点
+    //get the pixel
     private int dip2x(float depValue){
         final float density = getResources().getDisplayMetrics().density;
         return (int)(depValue*density+0.5f);
@@ -136,6 +136,7 @@ public class DrawBoardMain extends AppCompatActivity implements View.OnClickList
             //mDrawingBoard.setBackgroundColor(Color.BLACK);
             boardBackground.setBackgroundColor(Color.BLACK);
             //mDrawingBoard.setBackgroundResource(R.drawable.eraser);
+            // nonsense, no useful already.
         }else if (tmp == 1){
             tmp = 0;
             //mDrawingBoard.setBackgroundColor(Color.TRANSPARENT);
@@ -151,7 +152,7 @@ public class DrawBoardMain extends AppCompatActivity implements View.OnClickList
         Log.e("1210-1","Change background");
     }
 
-    //实现滑动SeekBar改变画笔线条粗细大小
+    //SeekBar,to change the pen size and eraser
     private void bindViews() {
         SeekBar sb_normal = (SeekBar) findViewById(R.id.sb_normal);
 
@@ -160,8 +161,8 @@ public class DrawBoardMain extends AppCompatActivity implements View.OnClickList
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-                Log.e("1204-2", "触碰SeekBar中");
-                show.setText("当前笔刷:" + (((progress+1)/4)+1) + "  / 26px ");
+                Log.e("1204-2", "touching SeekBar!");
+                show.setText("Brush Size:" + (((progress+1)/4)+1) + "  / 26px ");
 
                 if (size > 0) {
                     mDrawingBoard.setmPaintSize((int) ((progress+1) /4));
@@ -186,7 +187,7 @@ public class DrawBoardMain extends AppCompatActivity implements View.OnClickList
                 lock = 0;
                 mDrawingBoard.isLock(lock);
                 Log.e("1204-3", "放开SeekBar");
-                //TODO what the fuck
+                //TODO wtf?
                 mDrawingBoard.reLoadBitmap();
                 //Log.e("1205", "");
 
@@ -211,7 +212,7 @@ public class DrawBoardMain extends AppCompatActivity implements View.OnClickList
         color14.setOnClickListener(this);
         color15.setOnClickListener(this);
         color16.setOnClickListener(this);
-        //设置默认画笔背景为蓝色
+        //page level
         mPaint.getBackground().setLevel(1);
         mPaint.getDrawable().setLevel(1);
         mPaint.setOnClickListener(this);
@@ -222,17 +223,17 @@ public class DrawBoardMain extends AppCompatActivity implements View.OnClickList
 
     }
 
-    //设置画板清空对话框
+    //AlertDialog, clean the board, but make paths stable
     private void alertDialogClean(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("确定要请空画板吗？");
-        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        builder.setMessage("Clean The drawBoard?");
+        builder.setPositiveButton("Do it", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 mDrawingBoard.clean();
             }
         });
-        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -319,14 +320,14 @@ public class DrawBoardMain extends AppCompatActivity implements View.OnClickList
             case R.id.iv_clean:
                 alertDialogClean();
                 break;
-                //反撤销
+                //iv_antilast
             case R.id.iv_antilast:
                 mDrawingBoard.lastStep();
                 break;
-            case R.id.iv_last://撤销
+            case R.id.iv_last:
                 mDrawingBoard.nextStep();
                 break;
-            case R.id.iv_save://撤销
+            case R.id.iv_save://save the path to json
                 mDrawingBoard.saveToLocal();
                 break;
             default:

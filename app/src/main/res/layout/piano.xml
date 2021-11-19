@@ -34,7 +34,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="C"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/PianoD"
@@ -45,7 +45,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="D"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/PianoE"
@@ -56,7 +56,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="E"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/PianoF"
@@ -67,7 +67,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="F"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/PianoG"
@@ -78,7 +78,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="G"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/PianoA"
@@ -89,7 +89,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="A"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/PianoB"
@@ -100,7 +100,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="B"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianoc"
@@ -111,7 +111,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="c"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianod"
@@ -122,7 +122,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="d"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianoe"
@@ -133,7 +133,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="e"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianof"
@@ -144,7 +144,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="f"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianog"
@@ -155,7 +155,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="g"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianoa"
@@ -166,7 +166,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="a"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianob"
@@ -177,7 +177,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="b"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
             </LinearLayout>
 
@@ -197,7 +197,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="c1"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianod1"
@@ -208,7 +208,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="d1"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianoe1"
@@ -219,7 +219,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="e1"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianof1"
@@ -230,7 +230,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="f1"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianog1"
@@ -241,7 +241,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="g1"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianoa1"
@@ -252,7 +252,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="a1"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianob1"
@@ -263,7 +263,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="b1"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianoc2"
@@ -274,7 +274,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="c2"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianod2"
@@ -285,7 +285,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="d2"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianoe2"
@@ -296,7 +296,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="e2"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianof2"
@@ -307,7 +307,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="f2"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianog2"
@@ -318,7 +318,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="g2"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianoa2"
@@ -329,7 +329,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="a2"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/Pianob2"
@@ -340,7 +340,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:text="b2"
                     android:textAllCaps="false"
-                    android:textSize="35dp" />
+                    android:textSize="20dp" />
 
             </LinearLayout>
 

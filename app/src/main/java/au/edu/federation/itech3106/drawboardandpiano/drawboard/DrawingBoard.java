@@ -29,35 +29,36 @@ public class DrawingBoard extends View {
     private Context mContext;
     private DrawMode mDrawMode = DrawMode.PaintMode;
 
-    //当前控件的宽高
+    //Width and height of the panel
     private int mWidth;
     private int mHeight;
 
-    //画笔
+    //pen
     private Paint mPaint;
-    //画笔颜色，默认黑色
+    //color of pen, default is black
     private int mPaintColor = Color.BLACK;
-    //画布颜色，默认透明
+    //Canvas color, transparent by default
     private int mCanvasColor = Color.TRANSPARENT;
     //private int mCanvasColor = Color.BLACK;
-    //画笔宽度,默认10个像素点
+    //Brush width, default 1 pixels
     private int mPaintSize = dip2x(1);
     //橡皮擦宽度
     //private final int mEraseSize = dip2x(20);
-    //缓冲的位图
+    //Buffered bitmap
     public Bitmap mBufferBitmap;
-    //缓冲的画布
+    //Cushioned canvas
     private Canvas mBufferCanvas;
-    //路径
+    //paths
     private Path mPath;
-    //设置图形混合模式为清除，橡皮擦的功能
-    //需要彻底关掉硬件加速，在初始化前
+    //Set graphic blend mode to clear, function of eraser
+    //TODO hardware acceleration needs to be turned off completely before initialization!!!
     private final PorterDuffXfermode mEraserMode = new PorterDuffXfermode(PorterDuff.Mode.DST_OUT);
-    //保存的路径
+    //Save path,function of undo need it
     private List<DrawPathList> savePaths;
-    //当前的路径
+    //Save current path,
     private List<DrawPathList> currPaths;
-    //画板锁定状态
+    //drawboard locked, when justifing the seekbar, change the size of pen, need to lock the board,
+    //otherwise,some stupid errors will occurs.
     private int islock = 0;
 
     public DrawingBoard(Context context) {
@@ -68,13 +69,13 @@ public class DrawingBoard extends View {
         super(context, attrs);
         initPaint();
         initPath();
-        //View从API Level 11才加入setLayerType方法
-        //关闭硬件加速
+        //View: after api Level 11
+        //shut down the hardware acceleration!!!
         setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
     }
 
-    //获取像素点
+    //get the pixel
     private int dip2x(float depValue) {
         final float density = getResources().getDisplayMetrics().density;
         return (int) (depValue * density + 0.5f);
@@ -97,34 +98,34 @@ public class DrawingBoard extends View {
     }
 
     private void initCanvas() {
-        //创建一个BITMAP，BITMAP就是Canvas绘制的图片
+        //Create a BITMAP. A BITMAP is an image drawn on the Canvas
         mBufferBitmap = Bitmap.createBitmap(mWidth, mHeight, Bitmap.Config.ARGB_8888);
         mBufferCanvas = new Canvas(mBufferBitmap);
-        //默认背景
+        //The default setting
         mBufferCanvas.drawColor(mCanvasColor);
     }
 
     private void initPaint() {
-        //设置画笔抗锯齿和抖动
+        //Set brush anti-aliasing and shake
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
-        //设置画笔填充方式为只描边
+        //Set the brush fill method to Stroke only
         mPaint.setStyle(Paint.Style.STROKE);
-        //设置画笔颜色
+        //Set the brush color
         mPaint.setColor(mPaintColor);
-        //设置画笔宽度
+        //Set the brush width
         mPaint.setStrokeWidth(mPaintSize);
-        //设置圆形线帽
+        //Set a round thread cap
         mPaint.setStrokeJoin(Paint.Join.ROUND);
-        //设置线段连接处为圆角
+        //Set the line segment connection to a rounded corner
         mPaint.setStrokeCap(Paint.Cap.ROUND);
-        //开启缓存
+        //Open the cache
         boolean isDrawingCacheEnabled = true;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        //可以加入颜色背景
+        //TODO0 add a color background
         canvas.drawBitmap(mBufferBitmap, 0, 0, null);
         if (currPaths == null || currPaths.isEmpty()) {
             return;
@@ -136,7 +137,7 @@ public class DrawingBoard extends View {
         }
     }
 
-    //默认画笔模式,颜色
+    //Default brush mode, color
     public int getmPaintColor() {
         return mPaintColor;
     }
@@ -150,18 +151,18 @@ public class DrawingBoard extends View {
         return mDrawMode;
     }
 
-    //设置画笔模式
+    //Set brush mode
     public void setMode(DrawMode mode) {
         if (mode != mDrawMode) {
             if (mode == DrawMode.EraserMode) {
-                //橡皮擦模式
+                //Eraser mode
                 mPaint.setStrokeWidth(mPaintSize);
                 mPaint.setXfermode(mEraserMode);
                 //mPaint.setColor(mCanvasColor);
-                //橡皮擦颜色不能是透明的
+                //The eraser color must not be transparent
                 mPaint.setColor(Color.parseColor("#ffffff"));
             } else {
-                //画笔模式
+                //The brush model
                 mPaint.setStrokeWidth(mPaintSize);
                 mPaint.setXfermode(null);
                 mPaint.setColor(mPaintColor);
@@ -170,7 +171,7 @@ public class DrawingBoard extends View {
         mDrawMode = mode;
     }
 
-    //调节画笔粗细的时候，锁定画板
+    //Lock the palette while adjusting the brush thickness
     public void isLock(int lock) {
         if (lock == 1) {
             islock = 1;
@@ -192,13 +193,13 @@ public class DrawingBoard extends View {
             switch (event.getActionMasked()) {
                 case MotionEvent.ACTION_DOWN:
 
-                    //处理点击事件
+                    //Handling click events
                     performClick();
-                    //重置所有 PointerId 为 -1
+                    //Reset all pointerids to -1
                     clearTouchRecordStatus();
-                    //新增一个轨迹
+                    //Add a new track
                     addNewPath(event);
-                    //重绘
+                    //redraw
                     invalidate();
                     Log.e("1211-1", "ACTION_DOWN");
                     break;
@@ -207,16 +208,16 @@ public class DrawingBoard extends View {
 
                     if (currPaths.size() > 0) {
                         for (int i = 0; i < event.getPointerCount(); i++) {
-                            //遍历当前屏幕上所有手指
+                            //Traverse all fingers on the current screen
                             int itemPointerId = event.getPointerId(i);//获取到这个手指的 ID
                             for (DrawPathList itemPath : currPaths) {
-                                //遍历绘制记录表，通过 ID 找到对应的记录
+                                //Traverse the drawing record table and find the corresponding record by ID
                                 if (itemPointerId == itemPath.pointerId) {
                                     int pointerIndex = event.findPointerIndex(itemPointerId);
-                                    //通过 pointerIndex 获取到此次滑动事件的所有历史轨迹
+                                    //All historical tracks of this sliding event are obtained through pointerIndex
                                     List<PointF> recordList = readPointList(event, pointerIndex);
                                     if (!listEquals(recordList, itemPath.record.peek())) {
-                                        //判断该 List 是否已存在，不存在则添加进去
+                                        //Check whether the List already exists and add it to the List if it does not
                                         itemPath.record.push(recordList);
                                         addPath(recordList, itemPath.path);
                                     }
@@ -229,7 +230,7 @@ public class DrawingBoard extends View {
                     Log.e("1211-1", "ACTION_MOVE");
                     break;
                 case MotionEvent.ACTION_UP:
-                    //保存路径
+                    //Save the path
                     //=======================
                     clearTouchRecordStatus();
                     //=======================
@@ -239,18 +240,18 @@ public class DrawingBoard extends View {
                     break;
                 //----------------------------------------------------------------------
                 case MotionEvent.ACTION_POINTER_DOWN:
-                    //屏幕上已经有了手指，此时又有别的手指点击时事件
+                    //When there is already a finger on the screen and another finger clicks
                     addNewPath(event);
                     invalidate();
                     Log.e("1211-1.2", "松前指尖数: " + String.valueOf(event.getActionIndex()));
                     Log.e("1211-1.1", "ACTION_POINTER_DOWN");
                     break;
                 case MotionEvent.ACTION_POINTER_UP:
-                    //屏幕上有一根指头抬起，但有别的指头未抬起时的事件
+                    //There is an event on the screen when one finger is up, but the others are not
                     int pointerId = event.getPointerId(event.getActionIndex());
                     for (DrawPathList item : currPaths) {
                         if (item.pointerId == pointerId) {
-                            //该手指已绘制结束，将此 PointerId 重置为 -1
+                            //The finger is finished drawing, reset this PointerId to -1
                             item.pointerId = -1;
                         }
                     }
@@ -258,7 +259,7 @@ public class DrawingBoard extends View {
                     Log.e("1211-1.1", "ACTION_POINTER_UP");
                     break;
                 case MotionEvent.ACTION_CANCEL:
-                    //事件被取消
+                    //Event cancelled
                     clearTouchRecordStatus();
                     Log.e("1211-1.1", "ACTION_CANCEL");
                     break;
@@ -297,7 +298,7 @@ public class DrawingBoard extends View {
     }
 
     /**
-     * 判断两个列表中所有的数据是否相同
+     * Determine whether all data in the two lists are the same
      */
     private boolean listEquals(List<PointF> lis1, List<PointF> list2) {
         if (lis1.equals(list2)) {
@@ -344,18 +345,18 @@ public class DrawingBoard extends View {
         Log.e("1206-2", "total savePath : " + savePaths.size());
     }
 
-    //清除画板
+    //CLEAN sketchpad
     public void clean() {
 
         savePaths.clear();
         currPaths.clear();
-        //将位图变为透明的
+        //Make the bitmap transparent
         mBufferBitmap.eraseColor(Color.TRANSPARENT);
         invalidate();
     }
 
     /**
-     * 下一步 反撤销yi
+     * undo
      */
     public void lastStep() {
         if (currPaths != savePaths) {
@@ -369,7 +370,7 @@ public class DrawingBoard extends View {
     }
 
     /**
-     * 上一步 撤销
+     * ANTI undo
      */
     public void nextStep() {
         if (currPaths.size() > 0) {
@@ -389,7 +390,7 @@ public class DrawingBoard extends View {
         mPaint.setStrokeWidth(mPaintSize);
     }
 
-    //重绘位图
+    //Redraw the bitmap
     private void reDrawBitmap() {
         mBufferBitmap.eraseColor(Color.TRANSPARENT);
         for (int i = 0; i < currPaths.size(); i++) {
@@ -401,7 +402,7 @@ public class DrawingBoard extends View {
         invalidate();
     }
 
-    //重加载位图
+    //Reload the bitmap
     public void reLoadBitmap() {
         //mBufferBitmap.eraseColor(Color.TRANSPARENT);
 
@@ -430,13 +431,15 @@ public class DrawingBoard extends View {
         //测试，注释改变笔刷粗细的代码，也会掉。
         //把上边的文本更新关掉，好了...
         //把宽度设置为150dp，貌似不用删也好了。
+
+
         invalidate();
         Log.e("1205-3", "total currPaths : " + currPaths.size());
     }
 
     public void saveToLocal() {
         Log.e("1219","00");
-        //保存数据
+        //save dates
         OutputStream outStream;
         try {
             Gson g = new Gson();

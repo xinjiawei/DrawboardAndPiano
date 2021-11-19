@@ -33,12 +33,9 @@ public class MainActivity extends AppCompatActivity {
         mBtnlogin1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                //Intent是一种运行时绑定（run-time binding）机制，它能在程序运行过程中连接两个不同的组件。
-                //page1为先前已添加的类，并已在AndroidManifest.xml内添加活动事件(<activity android:name="page1"></activity>),
-                // 在存放资源代码的文件夹下下，
 
                 Intent i = new Intent(MainActivity.this , DrawBoardMain.class);
-                ////启动
+                //Start
                 String message = "30393065 Jiawei Xin";
                 i.putExtra(EXTRA_MESSAGE, message);
                 startActivity(i);
@@ -52,31 +49,25 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        Log.e("cwj", "内置SD卡路径 = " + Environment.getExternalStorageDirectory());
-        Log.e("cwj", "内置路径 = " + getFilesDir());
-        //Log.e("cwj", "内置路径 = " + Context.getExternalFilesDir(dir).getAbsolutePath());
+        Log.e("cwj", " intel SD card path = " + Environment.getExternalStorageDirectory());
+        Log.e("cwj", "intel storge = " + getFilesDir());
         File directory_pictures = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
         Log.e("0000", "directory_pictures="+directory_pictures);
     }
 
-    //点击按钮弹出一个单选对话框
+    //AlertDialog
     public void click2(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Select want you want!");
         final String items[] = {"Piano", "Flute", "Xylophone"};
-        //-1代表没有条目被选中
+        //-1 : means not select
         builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //1.把选中的条目取出来
+                //1.selectd it
                 String item = items[which];
-                /*
-                SharedPreferences sharedPreferences= getSharedPreferences("data2", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                 */
-                //Toast.makeText(getApplicationContext(),item.toString(),Toast.LENGTH_LONG).show();
-                //2.然后把对话框关闭
+                //2.close the dialog
                 dialog.dismiss();
                 String message = "null";
                 Intent i = new Intent(MainActivity.this , PianoMain.class);
@@ -93,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                     default:
                         Log.e("1221", "error");
                 }
-                ////启动
+                //start
                 Log.e("1299-3",message);
                 i.putExtra(EXTRA_MESSAGE, message);
                 startActivity(i);
