@@ -13,15 +13,15 @@ import au.edu.federation.itech3106.drawboardandpiano.bitencode.PianoMusic;
 
 public class PianoMain extends Activity {
     private Button button[];        // Button array
-    private PianoMusic utils;       // Button array
-    private View parent;            // 父视图
-    private int buttonId[];         // 按钮id
-    private boolean havePlayed[];   // 是否已经播放了声音，当手指在同一个按钮内滑动，且已经发声，就为true
-    /*    private View ParentKeys;        // 全部按钮的视图
-        private View UpKeys;            // 上排白色按钮所在的视图
-        private View DownKeys;          // 下排白色按钮所在的视图
+    private PianoMusic utils;       // Tool
+    private View parent;            // Parent view
+    private int buttonId[];         // button id
+    private boolean havePlayed[];   // play video or not,if so ,true
+    /*    private View ParentKeys;        // all views of buttons
+        private View UpKeys;            // The view with the white buttons in the top row
+        private View DownKeys;          // The view with the white buttons in the bottom row
         */
-    private int pressedkey[];       // 已按下的按键
+    private int pressedkey[];       // pressed button
     int BoardLock = 0;
 
 
@@ -36,10 +36,10 @@ public class PianoMain extends Activity {
         int loadboard = Integer.parseInt(message);
         Log.e("1299-1", "You Select : " + String.valueOf(loadboard));
         Log.e("1221","now message :" + message);
-        // 新建工具类
+        // new tool class
         utils = new PianoMusic(getApplicationContext(),loadboard);
 
-        // 按钮资源Id
+        // resource button id
         buttonId = new int[48];
 
 
@@ -107,69 +107,10 @@ pressedkey[count] >= 28
         buttonId[47] = R.id.Pianob2;
 
 
-        /*
-        buttonId[0] = R.id.PianoC;
-        buttonId[1] = R.id.PianoD;
-        buttonId[2] = R.id.PianoE;
-        buttonId[3] = R.id.PianoF;
-        buttonId[4] = R.id.PianoG;
-        buttonId[5] = R.id.PianoA;
-        buttonId[6] = R.id.PianoB;
-
-        buttonId[7] = R.id.Pianoc;
-        buttonId[8] = R.id.Pianod;
-        buttonId[9] = R.id.Pianoe;
-        buttonId[10] = R.id.Pianof;
-        buttonId[11] = R.id.Pianog;
-        buttonId[12] = R.id.Pianoa;
-        buttonId[13] = R.id.Pianob;
-
-        buttonId[14] = R.id.Pianoc1;
-        buttonId[15] = R.id.Pianod1;
-        buttonId[16] = R.id.Pianoe1;
-        buttonId[17] = R.id.Pianof1;
-        buttonId[18] = R.id.Pianog1;
-        buttonId[19] = R.id.Pianoa1;
-        buttonId[20] = R.id.Pianob1;
-
-        buttonId[21] = R.id.Pianoc2;
-        buttonId[22] = R.id.Pianod2;
-        buttonId[23] = R.id.Pianoe2;
-        buttonId[24] = R.id.Pianof2;
-        buttonId[25] = R.id.Pianog2;
-        buttonId[26] = R.id.Pianoa2;
-        buttonId[27] = R.id.Pianob2;
-
-        buttonId[28] = R.id.PianoCm;
-        buttonId[29] = R.id.PianoDm;
-        buttonId[30] = R.id.PianoFm;
-        buttonId[31] = R.id.PianoGm;
-        buttonId[32] = R.id.PianoAm;
-
-        buttonId[33] = R.id.Pianocm;
-        buttonId[34] = R.id.Pianodm;
-        buttonId[35] = R.id.Pianofm;
-        buttonId[36] = R.id.Pianogm;
-        buttonId[37] = R.id.Pianoam;
-
-        buttonId[38] = R.id.Pianoc1m;
-        buttonId[39] = R.id.Pianod1m;
-        buttonId[40] = R.id.Pianof1m;
-        buttonId[41] = R.id.Pianog1m;
-        buttonId[42] = R.id.Pianoa1m;
-
-        buttonId[43] = R.id.Pianoc2m;
-        buttonId[44] = R.id.Pianod2m;
-        buttonId[45] = R.id.Pianof2m;
-        buttonId[46] = R.id.Pianog2m;
-        buttonId[47] = R.id.Pianoa2m;
-
-         */
-
         button = new Button[48];
         havePlayed = new boolean[48];
 
-        // 获取按钮对象
+        // get button item
         for (int i = 0; i < button.length; i++) {
             button[i] = (Button) findViewById(buttonId[i]);
             button[i].setClickable(false);
@@ -189,13 +130,6 @@ pressedkey[count] >= 28
         setContentView(R.layout.piano);
         init();
 
-        /*
-        Intent i = getIntent();
-        String message =i.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        loadboard = Integer.parseInt(message);
-        Log.e("1299-1", "You Select : " + String.valueOf(loadboard));
-
-         */
 
         parent = (View) findViewById(R.id.ParentKeys);
         parent.setClickable(true);
@@ -203,34 +137,34 @@ pressedkey[count] >= 28
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                int temp;           // 暂存所点击的按钮对象
+                int temp;           // Holds the clicked button object
                 int tempIndex;
-                int pointercount;   // 同时按下的数目
+                int pointercount;   // pressed in the same time amount
 
                 pointercount = event.getPointerCount();
                 Log.e("1212-2", "pointercount: " + String.valueOf(pointercount));
 
                 for (int count = 0; count < pointercount; count++) {
-                    boolean moveflag = false;   // moveflag - 是否移动的标志
+                    boolean moveflag = false;   // moveflag - move or not
                     temp = isInAnyScale(event.getX(count), event.getY(count), button);
-                    //判断键盘锁定状态
+                    //keyboard lock or not
                     BoardLock = utils.isBoardLock();
                     if ((temp != -1) && (BoardLock == 0)) {
-                        //触摸点击事件
+                        //touch event
                         switch (event.getActionMasked()) {
-                            case MotionEvent.ACTION_DOWN:   // 与pointerdown合并即可
+                            case MotionEvent.ACTION_DOWN:   // together with printerdown
                                 Log.e("1216", String.valueOf(utils.isBoardLock()));
                                 Log.e("1213-1", "ACTION_DOWN");
                             case MotionEvent.ACTION_POINTER_DOWN:
                                 Log.e("1213-1", "ACTION_POINTER_DOWN");
-                                Log.e("1212-3", "当前队列: " + count); // 方便调试（输出为绿色）
+                                Log.e("1212-3", "当前队列: " + count); // Easy debugging (output is green)
                                 pressedkey[count] = temp;
-                                if (!havePlayed[temp]) {// 播放音乐；同时改变按键为已按下
+                                if (!havePlayed[temp]) {// play music,press down
                                     button[temp].setBackgroundResource(R.drawable.button_pressed);
-                                    // 播放音阶
+                                    // play music
                                     utils.soundPlay(temp);
-                                    Log.e("1212-4", "已播放的id: " + temp);// 方便调试（输出为绿色）
-                                    havePlayed[temp] = true;// 设置为已播放
+                                    Log.e("1212-4", "已播放的id: " + temp);// Easy debugging (output is green)
+                                    havePlayed[temp] = true;// set as playing
                                 }
                                 break;
 
@@ -238,16 +172,16 @@ pressedkey[count] >= 28
                                 Log.e("1213-1", "ACTION_MOVE");
                                 temp = pressedkey[count];
                                 for (int i = temp + 1; i >= temp - 1; i--) {
-                                    // 当在两端的按钮时，会有一边越界
+                                    // When the buttons are on both ends, one side is out of bounds
                                     if (i < 0 || i >= button.length) {
                                         continue;
                                     }
-                                    if (isInScale(event.getX(count), event.getY(count), button[i])) {// 在某个按键内
+                                    if (isInScale(event.getX(count), event.getY(count), button[i])) {// in a button
                                         moveflag = true;
-                                        if (i != temp) {// 在相邻按键内
+                                        if (i != temp) {// nearby button
                                             boolean laststill = false;
                                             boolean nextstill = false;
-                                            // 假设手指已经从上一个位置抬起，但是没有真的抬起，所以不移位
+                                            // Suppose the finger has been lifted from the previous position, but not really lifted, so it is not displaced
                                             pressedkey[count] = -1;
                                             for (int j = 0; j < pointercount; j++) {
                                                 if (pressedkey[j] == temp) {
@@ -258,18 +192,18 @@ pressedkey[count] >= 28
                                                 }
                                             }
 
-                                            if (!nextstill) {// 移入的按键没有按下
-                                                // 设置当前按键
+                                            if (!nextstill) {// The move in button is not pressed
+                                                // set as recent button
                                                 button[i].setBackgroundResource(R.drawable.button_pressed);
-                                                // 发音
+                                                // voice
                                                 utils.soundPlay(i);
                                                 havePlayed[i] = true;
                                             }
 
                                             pressedkey[count] = i;
 
-                                            if (!laststill) {// 没有手指按在上面
-                                                // 设置上一个按键
+                                            if (!laststill) {// no finger on
+                                                // set up button
                                                 if (temp == 1 || temp == 3 || temp == 6 || temp == 8 || temp == 10 || temp == 13 || temp == 15 || temp == 18 || temp == 20 || temp == 22 ||
                                                         temp == 25 || temp == 27 || temp == 30 || temp == 32 || temp == 34 || temp == 37 || temp == 39 || temp == 42 || temp == 44 || temp == 46)
                                                     button[temp].setBackgroundResource(R.drawable.blackbutton);
@@ -288,12 +222,12 @@ pressedkey[count] >= 28
                                 Log.e("1213-1", "ACTION_UP");
                             case MotionEvent.ACTION_POINTER_UP:
                                 Log.e("1213-1", "ACTION_POINTER_UP");
-                                // 事件与点对应
+                                // event with point
                                 tempIndex = event.getActionIndex();
                                 if (tempIndex == count) {
                                     Log.e("1212-5", "多点事件: " + tempIndex);
                                     boolean still = false;
-                                    //TODO  当前点已抬起
+                                    //TODO  up now
                                     for (int t = count; t < 5; t++) {
                                         if (t != 4) {
                                             if (pressedkey[t + 1] >= 0) {
@@ -306,13 +240,13 @@ pressedkey[count] >= 28
                                         }
 
                                     }
-                                    for (int i = 0; i < pressedkey.length; i++) {// 是否还有其他点
+                                    for (int i = 0; i < pressedkey.length; i++) {// other point or not
                                         if (pressedkey[i] == temp) {
                                             still = true;
                                             break;
                                         }
                                     }
-                                    if (!still) {// 已经没有手指按在该键上
+                                    if (!still) {// no finger on the button recently
                                         if (temp == 1 || temp == 3 || temp == 6 || temp == 8 || temp == 10 || temp == 13 || temp == 15 || temp == 18 || temp == 20 || temp == 22 ||
                                                 temp == 25 || temp == 27 || temp == 30 || temp == 32 || temp == 34 || temp == 37 || temp == 39 || temp == 42 || temp == 44 || temp == 46)
                                             button[temp].setBackgroundResource(R.drawable.blackbutton);
@@ -354,13 +288,12 @@ pressedkey[count] >= 28
         return loadboard;
         //return 1;
     }
-
      */
 
 
-    //判断某个点是否在某个按钮的范围内
+    //Determine whether a point is within the range of a button
     private boolean isInScale(float x, float y, Button button) {
-        // tempParent.getTop()是获取按钮所在父视图相对其父视图的右上角纵坐标
+        // tempParent.getTop()Gets the upper-right ordinate of the parent view of the button relative to its parent view
         View tempParent;
         tempParent = (View) button.getParent();
         if (x > button.getLeft()
@@ -374,9 +307,9 @@ pressedkey[count] >= 28
         }
     }
 
-    //判断某个点是否在一个按钮集合中的某个按钮内
+    //
     private int isInAnyScale(float x, float y, Button[] button) {
-        // tempParent.getTop()是获取按钮所在父视图相对其父视图的右上角纵坐标
+        // tempParent.getTop()Determines whether a point is within a button in a button set
         View tempParent;
         for (int i = button.length - 1; i >= 0; i--) {
             tempParent = (View) button[i].getParent();
