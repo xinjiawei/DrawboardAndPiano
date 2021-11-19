@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DrawBoardMain">
+
+    <Button
+        android:id="@+id/blackbacgroud"
+        android:onClick="onClickBlackbac"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_gravity="center"
+        android:background="#66ff33"
+        android:gravity="center|center_vertical"
+        android:text="Change Background"
+        android:textSize="15sp"
+        >
+    </Button>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="150dp"
+        android:layout_height="20dp"
+        android:gravity="center"
+        android:background="#8BC34A"
+        android:text="TextView"
+        android:layout_marginRight="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="120dp">
+    </TextView>
+        <SeekBar
+            android:id="@+id/sb_normal"
+            android:layout_width="200dp"
+            android:layout_height="22dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="120dp"
+            />
+
+
+
+    <LinearLayout
+        android:id="@+id/ll_one"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/ll_two"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="60dp">
+
+            <ImageView
+                android:id="@+id/boardbackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/drawboard" />
+
+            <au.edu.federation.itech3106.drawboardandpiano.drawboard.DrawingBoard
+                android:id="@+id/draw_board"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="-60dp">
+
+            <ImageView
+                android:id="@+id/iv_one"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@color/colorBlack" />
+
+            <ImageView
+                android:id="@+id/iv_two"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@color/colorAccent" />
+
+            <ImageView
+                android:id="@+id/iv_three"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary" />
+
+            <ImageView
+                android:id="@+id/iv_four"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@color/colorRed" />
+            <ImageView
+                android:id="@+id/iv_five"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#1DE9B6" />
+            <ImageView
+                android:id="@+id/iv_six"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#D500F9" />
+            <ImageView
+                android:id="@+id/iv_seven"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#C51162" />
+            <ImageView
+                android:id="@+id/iv_eight"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#F1F8E9" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/iv_one1"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@color/colorGreen" />
+
+            <ImageView
+                android:id="@+id/iv_two2"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@color/colorBlue" />
+
+            <ImageView
+                android:id="@+id/iv_three3"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@color/white" />
+
+            <ImageView
+                android:id="@+id/iv_four4"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@color/select_mode_bg" />
+            <ImageView
+                android:id="@+id/iv_five5"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@color/mode_bg" />
+            <ImageView
+                android:id="@+id/iv_six6"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#FF9800" />
+            <ImageView
+                android:id="@+id/iv_seven7"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#FFEB3B" />
+            <ImageView
+                android:id="@+id/iv_eight8"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#8BC34A" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_two"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/ll_one"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center_vertical"
+        >
+            <ImageView
+                android:id="@+id/iv_paint"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/draw_mode_background"
+                android:padding="8dp"
+                android:src="@drawable/paint_mode_src"/>
+            <ImageView
+                android:id="@+id/iv_eraser"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/draw_mode_background"
+                android:padding="8dp"
+                android:src="@drawable/eraser_mode_src"/>
+            <ImageView
+                android:id="@+id/iv_clean"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/draw_mode_background"
+                android:padding="8dp"
+                android:src="@drawable/clean"/>
+            <ImageView
+                android:id="@+id/iv_last"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/draw_mode_background"
+                android:padding="8dp"
+                android:src="@drawable/last"/>
+        <ImageView
+            android:id="@+id/iv_antilast"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/draw_mode_background"
+            android:padding="8dp"
+            android:src="@drawable/next"/>
+        <ImageView
+            android:id="@+id/iv_save"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/save"
+            android:padding="8dp"
+            android:src="@drawable/save"/>
+        </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
