@@ -1,8 +1,8 @@
 package au.edu.federation.itech3106.drawboardandpiano.drawboard;
 
 public enum DrawMode {
-    //画笔模式
+    //pen mode
     PaintMode,
-    //橡皮擦
+    //eraser mode
     EraserMode,
 }

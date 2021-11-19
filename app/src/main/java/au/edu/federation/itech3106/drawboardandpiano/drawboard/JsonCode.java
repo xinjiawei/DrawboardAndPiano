@@ -12,7 +12,7 @@ public class JsonCode {
     }
 
     /*
-     * 读取文件信息
+     *
      * */
     public String read(InputStream inStream) throws IOException
     {

@@ -35,7 +35,7 @@
             android:layout_gravity="center"
             android:background="#66ff33"
             android:gravity="center|center_vertical"
-            android:text="画板"
+            android:text="@string/drawboard"
             android:textSize="20dip"
             android:layout_marginTop="20dp">
 
@@ -48,7 +48,7 @@
             android:layout_gravity="center"
             android:background="#66ff33"
             android:gravity="center|center_vertical"
-            android:text="钢琴"
+            android:text="@string/instruments"
             android:textSize="20dip"
             android:layout_marginTop="20dp">
 

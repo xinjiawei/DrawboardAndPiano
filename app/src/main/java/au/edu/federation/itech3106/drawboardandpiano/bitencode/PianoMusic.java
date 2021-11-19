@@ -50,17 +50,17 @@ int[] MusicPiano = {
 
      int BoardLock = 1;
 
-    //使用soundpool播放音效
+    //Use Soundpool to play sound effects
     SoundPool soundPool;
     HashMap<Integer, Integer> soundPoolMap;
 
 
-    //加载ID
+    //Load ID
     public PianoMusic(final Context context, int loadboard) {
-        //最多能重复按动一个键20次
+        //Press a key up to 20 times repeatedly
         soundPool = new SoundPool(20, AudioManager.STREAM_MUSIC, 100);
         soundPoolMap = new HashMap<Integer, Integer>();
-        //加载音效ID到SoundPoolMap
+        //Load the sound ID to SoundPoolMap
         Log.e("1299-3","now loadboard :" + loadboard);
         switch(loadboard){
             case 0 :
@@ -68,25 +68,24 @@ int[] MusicPiano = {
                     soundPoolMap.put(i, soundPool.load(context, MusicPiano[i], 1));
                     Log.e("1221-1","MusicPiano " + i + " 声音加载完成");
                 }
-                break; //可选
+                break;
             case 1 :
                 for (int i = 0; i < MusicFlute.length; i++) {
                     soundPoolMap.put(i, soundPool.load(context, MusicFlute[i], 1));
                     Log.e("1221-2","MusicFlute" + i + " 声音加载完成");
                 }
-                break; //可选
+                break;
             case 2 :
                 for (int i = 0; i < MusicXYlophone.length; i++) {
                     soundPoolMap.put(i, soundPool.load(context, MusicXYlophone[i], 1));
                     Log.e("1221-3",i + "MusicXYlophone" + i +" 声音加载完成");
                 }
-                break; //可选
-            //你可以有任意数量的case语句
-            default : //可选
+                break;
+            default :
                 Log.e("1221-4","No loadboard Pra");
         }
 
-        //监听声音文件是否加载完毕
+        //Listen to whether the sound file is loaded
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
@@ -126,7 +125,7 @@ int[] MusicPiano = {
         }, cnt );
     }
 
-    //播放
+    //play
     public int soundPlay(int no) {
 
         Log.e("1212-7",  "BoardLock: "+ BoardLock + ", KeyId: " + String.valueOf(no));
@@ -145,7 +144,7 @@ int[] MusicPiano = {
         return BoardLock;
     }
 
-    //结束
+    //end
     /*
     public int soundOver() {
         return soundPool.play(soundPoolMap.get(1), 100, 100, 1, 0, 1.0f);

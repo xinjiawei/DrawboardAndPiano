@@ -12,8 +12,8 @@ import android.widget.Button;
 import au.edu.federation.itech3106.drawboardandpiano.bitencode.PianoMusic;
 
 public class PianoMain extends Activity {
-    private Button button[];        // 按钮数组
-    private PianoMusic utils;       // 工具类
+    private Button button[];        // Button array
+    private PianoMusic utils;       // Button array
     private View parent;            // 父视图
     private int buttonId[];         // 按钮id
     private boolean havePlayed[];   // 是否已经播放了声音，当手指在同一个按钮内滑动，且已经发声，就为true

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Drawboard and Instruments</string>
+    <string name="instruments">Instruments</string>
+    <string name="drawboard">DrawBoard</string>
+    <string name="change_background">Change Background</string>
+    <string name="textview">TextView</string>
 </resources>

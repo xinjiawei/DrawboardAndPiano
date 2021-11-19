@@ -16,7 +16,7 @@
         android:layout_gravity="center"
         android:background="#66ff33"
         android:gravity="center|center_vertical"
-        android:text="Change Background"
+        android:text="@string/change_background"
         android:textSize="15sp"
         >
     </Button>
@@ -26,7 +26,7 @@
         android:layout_height="20dp"
         android:gravity="center"
         android:background="#8BC34A"
-        android:text="TextView"
+        android:text="@string/textview"
         android:layout_marginRight="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
